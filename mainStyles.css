@@ -1,0 +1,573 @@
+*{
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+
+}
+body{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    z-index: 0;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+    padding: 1% 2% 0% 2%;
+    background-color: rgb(24, 23, 23);
+    align-items: center;
+    font-size: 60px;
+}
+
+
+
+.navbar .botaoAbrirNavbar{
+    display: flex;
+    width: 5%;
+}
+.navbar .botaoAbrirNavbar button{ 
+    background-color: rgb(24, 23, 23) ;
+    border: 1px solid rgb(24, 23, 23);
+}
+.navbar .nivel{
+    color: rgb(238, 238, 237);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    border: 3px solid rgb(73, 57, 5);
+    border-radius: 10px;
+    text-align: center;
+    padding: 0.5% 0.5% 0.5% 0.5%;
+
+}
+
+.nivel p{
+    padding: 0%;
+    margin: 0%;
+    font-size: 70%;
+
+}
+
+
+
+.logo{
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 10%;
+}
+.logo img{
+    width: 40%;
+    height: 50%;
+}
+
+.informacao{
+    width: 100%;
+    background-color: rgb(238, 238, 237);
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    font-size: 60px;
+    align-items:center;
+    padding: 1% 1% 1% 2%;
+    border-bottom: 1px solid rgb(209, 201, 201);
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.informacao p{
+    padding: 0%;
+    margin: 0%;
+    font-size: 70%;
+    text-align: center;
+}
+
+.informacao button{
+
+    display: flex;
+    width: 30%;
+    font-size: 70%;
+    justify-content: center;
+    border-radius: 10px;
+    color: rgb(24, 23, 23);
+    background-color: rgb(238, 238, 237);
+    transition: border 0.4s ease, box-shadow 0.4 ease;
+    font-family: "Outfit", sans-serif;
+}
+
+.informacao button:hover{
+    border: 2px solid rgb(17, 209, 119);
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+
+a {
+    text-decoration: none; 
+    color: inherit;        
+}
+
+.container-Cartoes{
+    width: 100%;
+    height: auto;
+    padding: 2% 0% 0% 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, max-content));
+    gap: 30px;
+    justify-content: center;
+    font-family: "Arimo", sans-serif;
+    font-weight: 500;
+
+    margin-bottom: 2%;
+
+}
+
+.cartao{
+    width: 500px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(180, 180, 177);
+    border-radius: 10px;
+    padding: 1%;
+    font-size: 60px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.cartao:hover{
+    border: 2px solid rgb(190, 190, 38);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+
+}
+
+.titulo-Cartao{
+    width: 100%;
+    display: flex;
+    font-size: 80%;
+   display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-left: 2%;
+}
+
+.botoes-Cartao{
+    display: flex;
+    position: absolute;
+    z-index: 2;
+
+    bottom: 10px;
+    right: 10px;
+
+    width: 15%;
+    height: 30%;
+}
+.botoes-Cartao button{
+    display: flex;
+    font-size: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(24, 23, 23);
+    color: rgb(238, 238, 237);
+    border: 1px solid rgb(24, 23, 23);
+    transition: background-color 0.4s ease, color 0.2s ease;
+}
+
+.botoes-Cartao button:hover{
+    color: rgb(24, 23, 23);
+    background-color: rgb(238, 238, 237);
+    border: 1px solid rgb(201, 201, 196);
+}
+
+/*----------------------
+-----------------------
+popup
+-------------------------
+------------------------*/
+.fundoPopup{
+    display: none;
+    position: absolute;
+    z-index: 80;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.popup{
+    display: none;
+    position: fixed;
+    z-index: 90;
+    width: 60%;
+    background-color: rgb(238, 238, 237);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+.cabecalho-Popup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 2% 2% 2%;
+    border-bottom: 2px solid rgb(24, 23, 23);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-Popup{
+    font-size: 100%;
+    font-family: "Arima", sans-serif;
+    padding: 2% 0% 0% 2%;
+}
+
+.botaoFechar-Popup {
+    width: 10%;
+}
+
+.botaoFechar-Popup button {
+    width: 100%;
+    font-size: 70%;
+    border-radius: 10px;
+    
+}
+
+.notasPopup{
+    width: 70%;
+    padding: 2% 0% 2% 2%;
+}
+
+.notasPopup input{
+    height: 50%;
+    font-size: 50%;
+    padding: 1% 1% 1% 2%;
+    border-radius: 10px;
+}
+
+.container-cronometroPopup{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 1% 2% 1%;
+    border-top: 2px solid rgb(24, 23, 23);
+}
+
+.botoesCronometro{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.botoesCronometro button{
+    display: flex;
+    width: 40%;
+    font-size: 60%;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgb(238, 238, 237);
+    border: 1px solid rgb(24, 23, 23);
+}
+
+.botoesCronometro #botaoIniciar{
+    border: 2px solid rgb(17, 209, 119);
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+
+}
+.botoesCronometro #botaoIniciar:hover{
+
+    background-color: rgb(17, 209, 119);
+
+
+   box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.botoesCronometro #botaoPausar{
+     border: 2px solid rgb(173, 27, 27);
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+
+}
+.botoesCronometro #botaoPausar:hover{
+    background-color: rgb(173, 27, 27);
+
+
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cronometroPopup{
+    width:40%;
+    display: flex;
+    text-align: center;
+    align-items: flex-end;
+}
+
+/*----------------------
+-----------------------
+popup
+-------------------------
+------------------------*/
+
+
+/*----------------------
+-----------------------
+NAVBAR
+-------------------------
+------------------------*/
+
+.navbarInterativa{
+    display: none;
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    flex-direction: column;
+    background-color: rgb(24, 23, 23);
+    z-index: 40;
+    align-items: center;
+    font-size: 60px;
+}
+
+.botoesNavbar{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: space-around;
+    gap: 10px;
+}
+.cabecalhoNavbar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1% 2% 0% 0%;
+}
+.cabecalhoNavbar button{
+    font-size: 60%;
+    color: rgb(238, 238, 237);
+    width: 20%;
+    align-self: flex-end;
+    background-color: rgb(24, 23, 23);
+    border: 2px solid rgb(24, 23, 23);
+}
+
+.botoesNavbar button{
+    font-size: 60%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-radius: 20px;
+    font-family:'Alata', sans-serif;
+    background-color: rgb(238, 238, 237);
+    color:rgb(24, 23, 23);
+    border: 1px solid rgb(238, 238, 237) ;
+    transition: background-color 0.4s ease, color 0.2s ease, border 0.4s ease;
+}
+
+.botoesNavbar button:hover{
+    background-color: rgb(24, 23, 23) ;
+    color:rgb(238, 238, 237);
+    border: 1px solid rgb(24, 23, 23) ;
+
+
+}
+
+/*----------------------
+-----------------------
+NAVBAR
+-------------------------
+------------------------*/
+
+
+
+/*----------------------
+-----------------------
+popup adicionar
+-------------------------
+------------------------*/
+
+.container-Adicionar{
+
+    display: none;
+    width: 50%;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:rgb(238, 238, 237) ;
+    font-size: 60px;
+    z-index: 100;
+    border-radius: 20px;
+    align-items: flex-start;
+    font-family: "Arima", sans-serif;
+}
+
+.cabecalho-Adicionar{
+    width: 100%;
+    font-size: 80%;
+    margin-bottom: 3%;
+    border-bottom: 1px solid rgb(24, 23, 23);
+    padding: 2% 2% 2% 2%;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.input-Adicionar{
+    display: flex;
+    width: 100%;
+    padding: 2% 2% 2% 2%;
+}
+.input-Adicionar input{
+    width: 90%;
+    font-size: 70%;
+    padding: 1% 1% 1% 1%;
+    border-radius: 10px;
+}
+.botoes-Adicionar{
+    display: flex;
+    flex-direction: row;
+    padding: 3% 1% 1% 1%;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2% 2% 2% 2%;
+}
+.botoes-Adicionar button{
+    width: 40%;
+    font-size: 60%;
+    border-radius: 10px;
+    background-color: rgb(24, 23, 23) ;
+    color:rgb(238, 238, 237);
+    border: 1px solid rgb(24, 23, 23) ;
+    transition: background-color 0.4s ease, color 0.2s ease, border 0.4s ease;
+    
+
+}
+
+.botoes-Adicionar button:hover{
+    background-color: rgb(238, 238, 237);
+    color:rgb(24, 23, 23);
+    border: 1px solid rgb(238, 238, 237) ;
+}
+
+
+
+/*----------------------
+-----------------------
+popup alterar
+-------------------------
+------------------------*/
+#alterarConta-container{
+    font-family: "Arima", sans-serif;
+    background-color: rgb(238, 238, 237);
+    box-sizing: content-box;
+    width: 50%;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    padding: 2% 0% 2% 0%;
+    border-radius: 20px;
+    font: 60px;
+}
+
+#titulo-alterar{
+    display: flex;
+    width: 100%;
+    font-size: 70%;
+    justify-content: center;
+    padding: 2% 0% 2% 2%;
+    border-bottom: 1px solid rgb(24, 23, 23);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+#alteracao-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5% 0% 5% 5%;
+    font-size: 70%;
+    gap: 15px;
+}
+
+#altera-email, #altera-senha{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#alteracao-container input{
+    width: 90%;
+    height: 60%;
+    border-radius: 20px;
+    padding: 2% 2% 2% 3%;
+    font-size: 70%;
+    border: 1px solid rgb(201, 201, 195);
+}
+
+.botoes-alterar{
+    padding-top: 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.botoes-alterar button{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 85%;
+    align-self: center;
+    justify-content: center;
+    font-size: 60%;
+    border-radius: 20px;
+    background-color: rgb(24, 23, 23);
+    color: rgb(238, 238, 237);
+    font-family:'Alata', sans-serif;
+    transition: background-color 0.4s ease, color 0.2s ease;
+    border: 1px solid rgb(24, 23, 23);
+    margin-bottom: 2%;
+    box-sizing: content-box;
+}
+
+.botoes-alterar button:hover{
+    color: rgb(24, 23, 23);
+    background-color: rgb(238, 238, 237);
+    border: 1px solid rgb(201, 201, 196);
+}
+
+#alterarConta-container a {
+    text-decoration: none; 
+    color: inherit;        
+}
+
+/*----------------------
+-----------------------
+popup alterar
+-------------------------
+------------------------*/
