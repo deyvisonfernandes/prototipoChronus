@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chronus</title>
-    <link rel="stylesheet" href="mainStyles.css">
+    <link rel="stylesheet" href="/public/css/mainStyles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alata&family=Bebas+Neue&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,9 +14,9 @@
 <body>
     <nav class="navbar">
         <div class="botaoAbrirNavbar"><button type="button" onclick="abrirNavbar('idNavbarInterativa')">
-            <img src="tresRetas.png" alt=""></button>
+            <img src="/public/assets/tresRetas.png" alt=""></button>
         </div>
-        <div class="logo"><img src="CHRONUS.png" alt=""></div>
+        <div class="logo"><img src="/public/assets/CHRONUS.png" alt=""></div>
         <div class="nivel"><p>NÍVEL BRONZE</p></div>
     </nav>
     <section class="informacao">
@@ -132,12 +132,12 @@
 <section class="navbarInterativa" id="idNavbarInterativa">
     <div class="cabecalhoNavbar">
         <button type="button" onclick="fecharNavbar('idNavbarInterativa')">X</button>
-        <img src="CHRONUS.png" alt="">
+        <img src="/public/assets/CHRONUS.png" alt="">
     </div>
     <div class="botoesNavbar">
-            <button><a href="mainTeste.html">Início</a></button>
+            <button><a href="/site/main.html">Início</a></button>
             <button type="button" onclick="abrirPopup('idFundo', 'alterarConta-container' )">Conta</button>
-            <button><a href="modelagemteste.html">Sair</a></button>
+            <button><a href="/site/paginaInicial.html">Sair</a></button>
         </div>
 
 </section>
@@ -189,7 +189,7 @@
             </div>
         </div>
         <div class="botoes-alterar">
-        <button><a href="mainTeste.html">ALTERAR</a></button>
+        <button><a href="/site/main.html">ALTERAR</a></button>
         <button type="button" onclick="fecharPopup('idFundo', 'alterarConta-container' )">CANCELAR</button>
         </div>
 
@@ -198,6 +198,6 @@
 
 
 </body>
-<script src="cliques.js"></script>
+<script src="/public/js/cliques.js"></script>
 
 </html>
