@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,82 +18,32 @@
         <div class="botaoAbrirNavbar"><button type="button" onclick="abrirNavbar('idNavbarInterativa')">
             <img src="/public/assets/tresRetas.png" alt=""></button>
         </div>
+        
         <div class="logo"><img src="/public/assets/CHRONUS.png" alt=""></div>
         <div class="nivel"><p>NÍVEL BRONZE</p></div>
     </nav>
     <section class="informacao">
-        <p>Olá, Sambrandomento!</p>
+        <?php $usuario = \App\Core\App::get('database')->selectOne('usuarios', $_SESSION['id']); ?>
+        <p>Olá, <?= $usuario->nome?> </p>
         <button type="button" onclick="abrirPopup('idFundo', 'idPopupAdicionar')">Adicionar</button>
         <p>Tempo na Semana: 23:00:00</p>
     </section>
 
     <section class="container-Cartoes">
+        <?php foreach($assuntos as $assunto): ?>
+        <?php $usuario = \App\Core\App::get('database')->selectOne('usuarios', $_SESSION['id']); ?>
         <div class="cartao">
             <div class="info-Cartao">
-                <div class="titulo-Cartao"> Modelagem de Sistemas
+                <div class="titulo-Cartao"> <?= $assunto->titulo ?>
                 </div>
                 <div class="botoes-Cartao">
-                    <button type="button" onclick="abrirPopup('idFundo', 'idPopup')">+</button>
+                    <button onclick="abrirPopup('idFundo', 'idPopup<?= $assunto->id ?>')">+</button>
                 </div>
             </div>
         </div>
+        <?php endforeach ?>
 
-        <div class="cartao">
-            <div class="info-Cartao">
-                <div class="titulo-Cartao"> Estrutura de Dados
-                </div>
-                <div class="botoes-Cartao">
-                    <button>+</button>
-                </div>
-            </div>
-        </div>
-        <div class="cartao">
-            <div class="info-Cartao">
-                <div class="titulo-Cartao"> Cálculo 10
-                </div>
-                <div class="botoes-Cartao">
-                    <button>+</button>
-                </div>
-            </div>
-        </div>
-        <div class="cartao">
-            <div class="info-Cartao">
-                <div class="titulo-Cartao"> Fisiologia Aplicada
-                </div>
-                <div class="botoes-Cartao">
-                    <button >+</button>
-                </div>
-            </div>
-        </div>
-
-         <div class="cartao">
-            <div class="info-Cartao">
-                <div class="titulo-Cartao"> Trabalho de Conclusão de Curso
-                </div>
-                <div class="botoes-Cartao">
-                    <button>+</button>
-                </div>
-            </div>
-        </div>
-
-         <div class="cartao">
-            <div class="info-Cartao">
-                <div class="titulo-Cartao"> Aviação 3
-                </div>
-                <div class="botoes-Cartao">
-                    <button>+</button>
-                </div>
-            </div>
-        </div>
-         <div class="cartao">
-            <div class="info-Cartao">
-                <div class="titulo-Cartao"> Sinfonia Acústica
-                </div>
-                <div class="botoes-Cartao">
-                    <button>+</button>
-                </div>
-            </div>
-        </div>
+       
     </section>
 
     <section class="fundoPopup" id="idFundo">
@@ -99,27 +51,32 @@
 <!--     -------------------POPUP---------------------                -->
 <!--     -------------------POPUP---------------------                -->
 <!--     -------------------POPUP---------------------                -->
-    <section class="popup" id="idPopup">
+    <?php foreach($assuntos as $assunto): ?>
+    <section class="popup" id="idPopup<?= $assunto->id ?>">
         <div class="cabecalho-Popup">
-            <div class="titulo-Popup">Modelagem de Sistemas</div>
-            <div class="botaoFechar-Popup"> <button type="button" onclick="fecharPopup('idFundo', 'idPopup')">X</button></div>
-        
+            <?php $usuario = \App\Core\App::get('database')->selectOne('usuarios', $_SESSION['id']); ?>
+            <div class="titulo-Popup"><?= $assunto->titulo ?></div>
+            <div class="botaoFechar-Popup"> 
+                <button type="button" onclick="fecharPopup('idFundo', 'idPopup<?= $assunto->id ?>'); pausa(<?= $assunto->id ?>);">X</button>
+            </div>
         </div>
 
-     <div class="notasPopup">
-        <input type="text">
-    
-    </div>
-
-    <div class="container-cronometroPopup">
-        <div class="botoesCronometro"> <button id="botaoIniciar">INICIAR</button>
-        <button id="botaoPausar">PAUSAR</button>
+        <div class="notasPopup">
+            <input type="text">
         </div>
-        <div class="cronometroPopup">00:00:00</div>
-    </div>
-        
 
+        <div class="container-cronometroPopup">
+            <div class="botoesCronometro"> 
+                <form action="salvar-tempo" method="POST">
+                <button id="botaoIniciar" onclick="inicializador(<?= $assunto->id ?>)">INICIAR</button>
+                <button id="botaoPausar" onclick="pausa(<?= $assunto->id ?>); salvarTempo(<?= $assunto->id ?>)">PAUSAR</button>
+            </div>
+            <div class="cronometroPopup" id="cronometroPopup<?= $assunto->id ?>"><?= $assunto->tempo ?></div>
+            </form>
+        </div>
     </section>
+<?php endforeach ?>
+
 <!--     -------------------POPUP---------------------                -->
 <!--     -------------------POPUP---------------------                -->
 <!--     -------------------POPUP---------------------                -->
@@ -135,9 +92,11 @@
         <img src="/public/assets/CHRONUS.png" alt="">
     </div>
     <div class="botoesNavbar">
-            <button><a href="/site/main.html">Início</a></button>
+            <button><a href="/app/views/site/main.html">Início</a></button>
             <button type="button" onclick="abrirPopup('idFundo', 'alterarConta-container' )">Conta</button>
-            <button><a href="/site/paginaInicial.html">Sair</a></button>
+            <form action="/logout" method="POST">
+            <button type="submit">Sair</button>
+        </form>
         </div>
 
 </section>
@@ -152,11 +111,14 @@
 
 <section class="container-Adicionar" id="idPopupAdicionar">
     <div class="cabecalho-Adicionar">Adicionar Assunto:</div>
-    <div class="input-Adicionar"><input type="text"></div>
+    <form action="store" method="POST">
+    <div class="input-Adicionar"><input type="text" name="titulo"></div>
     <div class="botoes-Adicionar">
-        <button>Salvar</button>
+        <button type="submit">Salvar</button>
+        </form>
         <button type="button" onclick="fecharPopup('idFundo', 'idPopupAdicionar')">Cancelar</button>
     </div>
+
 
 </section>
 <!--     -------------------POPUP ADICIONAR---------------------                -->
@@ -199,5 +161,6 @@
 
 </body>
 <script src="/public/js/cliques.js"></script>
+<script src="/public/js/cronometro.js"></script>
 
 </html>

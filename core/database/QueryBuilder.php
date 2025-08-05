@@ -53,6 +53,16 @@ class QueryBuilder
     return $statement->fetchAll(PDO::FETCH_CLASS);
 }
 
+public function selectWhere($table, $conditions) {
+    $fields = array_keys($conditions);
+    $sql = "SELECT * FROM {$table} WHERE " . implode(' = ? AND ', $fields) . " = ?";
+    
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute(array_values($conditions));
+
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
     public function insert($table, $parameters) {
         $sql = sprintf('INSERT INTO %s (%s) VALUES (:%s)',
         $table,

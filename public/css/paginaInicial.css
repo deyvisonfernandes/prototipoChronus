@@ -118,7 +118,14 @@ a {
     border-radius: 20px;
 }
 
-
+.mensagem-erro-Login{
+    display: flex;
+    color: #e92c2c;
+    font-size: 40%;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
 
 
 
