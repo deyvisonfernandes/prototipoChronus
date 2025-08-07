@@ -13,3 +13,5 @@ $router->post('login', 'paginaInicialController@login');
 $router->post('logout', 'mainController@logout');
 $router->post('store', 'mainController@store');
 $router->post('salvar-tempo', 'mainController@salvarTempo');
+$router->post('salvar-tempo-semanal', 'mainController@salvarTempoSemanal');
+$router->post('alterarCadastro', 'mainController@edit');

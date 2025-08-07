@@ -57,3 +57,67 @@ function salvarTempo(idAssunto) {
         body: `id=${idAssunto}&tempo=${encodeURIComponent(tempo)}`
     });
 }
+
+
+let tempoSemana = { horas: 0, minutos: 0, segundos: 0 };
+let timerSemana = null;
+
+function cronometroSemana(idUsuario) {
+    tempoSemana.segundos++;
+
+    if (tempoSemana.segundos === 60) {
+        tempoSemana.segundos = 0;
+        tempoSemana.minutos++;
+        if (tempoSemana.minutos === 60) {
+            tempoSemana.minutos = 0;
+            tempoSemana.horas++;
+        }
+    }
+
+    let h = tempoSemana.horas < 10 ? "0" + tempoSemana.horas : tempoSemana.horas;
+    let m = tempoSemana.minutos < 10 ? "0" + tempoSemana.minutos : tempoSemana.minutos;
+    let s = tempoSemana.segundos < 10 ? "0" + tempoSemana.segundos : tempoSemana.segundos;
+
+    document.getElementById("cronometroPopup" + idUsuario).innerText = `${h}:${m}:${s}`;
+}
+
+function inicializadorSemana(idUsuario) {
+    if (!timerSemana) {
+        const tempoTexto = document.getElementById("cronometroPopup" + idUsuario)?.innerText.trim() || "00:00:00";
+        const partes = tempoTexto.split(":");
+
+        let horas = parseInt(partes[0], 10);
+        let minutos = parseInt(partes[1], 10);
+        let segundos = parseInt(partes[2], 10);
+
+        // Verificação extra: se algum for NaN, forçamos para zero
+        horas = isNaN(horas) ? 0 : horas;
+        minutos = isNaN(minutos) ? 0 : minutos;
+        segundos = isNaN(segundos) ? 0 : segundos;
+
+        tempoSemana = { horas, minutos, segundos };
+
+        timerSemana = setInterval(() => cronometroSemana(idUsuario), 1000);
+    }
+}
+
+function pausaSemana() {
+    clearInterval(timerSemana);
+    timerSemana = null;
+}
+
+function salvarTempoSemana(idUsuario) {
+    const tempo = document.getElementById('cronometroPopup' + idUsuario).innerText;
+
+    fetch('salvar-tempo-semanal', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `tempo=${encodeURIComponent(tempo)}`
+    })
+    .then(res => res.text())
+    .then(resposta => {
+        console.log(resposta);
+    });
+}

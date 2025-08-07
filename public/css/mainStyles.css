@@ -255,6 +255,10 @@ popup
 .notasPopup{
     width: 70%;
     padding: 2% 0% 2% 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .notasPopup input{
@@ -262,6 +266,18 @@ popup
     font-size: 50%;
     padding: 1% 1% 1% 2%;
     border-radius: 10px;
+}
+
+.notasPopup button{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
 }
 
 .container-cronometroPopup{

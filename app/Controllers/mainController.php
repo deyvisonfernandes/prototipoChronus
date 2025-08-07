@@ -57,7 +57,56 @@ class mainController
 
     $id = $_POST['id'] ?? null;
     $tempo = $_POST['tempo'] ?? null;
+
+    if (!$id || !$tempo) {
+        http_response_code(400);
+        echo "Dados incompletos";
+        return;
+    }
+    \App\Core\App::get('database')->update('assuntos', $id, ['tempo' => $tempo]);
+
+    echo "Tempo salvo com sucesso";
 }
+
+public function salvarTempoSemanal() {
+    session_start();
+
+    if (!isset($_SESSION['id'])) {
+        http_response_code(401);
+        echo "Não autorizado";
+        return;
+    }
+
+    $idUsuario = $_SESSION['id'];
+    $tempo = $_POST['tempo'] ?? null;
+
+    if (!$tempo) {
+        http_response_code(400);
+        echo "Tempo não recebido";
+        return;
+    }
+
+    \App\Core\App::get('database')->update('usuarios', $idUsuario, [
+        'tempoSemana' => $tempo
+    ]);
+
+    echo "Tempo semanal salvo com sucesso";
+}
+
+  public function edit(){
+        $id = $_POST['id'];
+        $post = App::get('database')->selectOne('usuarios', $id);
+        $parameters = [
+            'nome' => $_POST['nome'],
+            'email'=> $_POST['email'],
+            'senha' => $_POST['senha'],
+        ];
+        $id = $_POST['id'];
+        App::get('database')->update('usuarios', $id, $parameters);
+        header('Location: /main');
+
+    }
+
 
 
     

@@ -113,7 +113,7 @@ public function selectWhere($table, $conditions) {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($parametros);
 
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            return true;
 
         } catch (Exception $e) {
             die($e->getMessage());

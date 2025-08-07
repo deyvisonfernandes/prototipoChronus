@@ -26,7 +26,8 @@
         <?php $usuario = \App\Core\App::get('database')->selectOne('usuarios', $_SESSION['id']); ?>
         <p>Olá, <?= $usuario->nome?> </p>
         <button type="button" onclick="abrirPopup('idFundo', 'idPopupAdicionar')">Adicionar</button>
-        <p>Tempo na Semana: 23:00:00</p>
+        <?php $usuario = \App\Core\App::get('database')->selectOne('usuarios', $_SESSION['id']); ?>
+        <p>Tempo na Semana: <p id="cronometroPopup<?= $usuario->id ?>"><?= $usuario->tempoSemana ?></p></p>
     </section>
 
     <section class="container-Cartoes">
@@ -63,13 +64,14 @@
 
         <div class="notasPopup">
             <input type="text">
+            <button class="botao-notas">></button>
         </div>
 
         <div class="container-cronometroPopup">
             <div class="botoesCronometro"> 
                 <form action="salvar-tempo" method="POST">
-                <button id="botaoIniciar" onclick="inicializador(<?= $assunto->id ?>)">INICIAR</button>
-                <button id="botaoPausar" onclick="pausa(<?= $assunto->id ?>); salvarTempo(<?= $assunto->id ?>)">PAUSAR</button>
+                <button type="button" id="botaoIniciar" onclick="inicializador(<?= $assunto->id ?>); inicializadorSemana(<?= $usuario->id ?>)">INICIAR</button>
+                <button type="button" id="botaoPausar" onclick="pausa(<?= $assunto->id ?>); pausaSemana(); salvarTempo(<?= $assunto->id ?>); salvarTempoSemana(<?= $usuario->id ?>)">PAUSAR</button>
             </div>
             <div class="cronometroPopup" id="cronometroPopup<?= $assunto->id ?>"><?= $assunto->tempo ?></div>
             </form>
@@ -135,25 +137,32 @@
     <div id="titulo-alterar">
             <h1>Alterar Cadastro</h1>
         </div>
+        <form action="/alterarCadastro" method="POST">
         <div id="alteracao-container">
+            
+            <?php $usuario = \App\Core\App::get('database')->selectOne('usuarios', $_SESSION['id']); ?>
+            <input type="hidden" name="id" value="<?= $usuario->id ?>">
             <div id="altera-nome">
                 <p>Nome</p>
-            <input type="text">
+            <input type="text" name="nome" value="<?= $usuario->nome ?>">
             </div>
             <div id="altera-email">
                 <p>Email</p>
-            <input type="text">
+            <input type="text" name="email" value="<?= $usuario->email?>">
             </div>
             
             <div id="altera-senha">
                 <p>Senha</p>
-            <input type="text">
+            <input type="text" name="senha" value="<?= $usuario->senha ?>">
             </div>
+            
         </div>
         <div class="botoes-alterar">
-        <button><a href="/site/main.html">ALTERAR</a></button>
+        <button type="submit">ALTERAR</button>
+        
         <button type="button" onclick="fecharPopup('idFundo', 'alterarConta-container' )">CANCELAR</button>
         </div>
+        </form>
 
     </section>
 
